@@ -42,7 +42,7 @@ overrideLicenses:
 
   # Different parts of this package are under different licenses
   - name: "pako"
-    version: "2.1.0"
+    version: "2.2.0"
     license: "MIT and Zlib"
     licenseFiles:
       - "./LICENSE"
