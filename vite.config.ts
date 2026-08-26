@@ -56,7 +56,9 @@ export default defineConfig(({ mode }) => {
                 sites: [],
 
                 // Apps to distribute as .js files for embedded use cases
-                apps: []
+                apps: {
+                    "busradar": "samples/busradar-demo/busradar-app/app.ts"
+                }
             }),
             react()
         ],

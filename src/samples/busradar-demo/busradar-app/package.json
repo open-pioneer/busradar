@@ -1,0 +1,28 @@
+{
+    "name": "basis-opt-app",
+    "private": true,
+    "dependencies": {
+        "@chakra-ui/react": "catalog:",
+        "@open-pioneer/chakra-snippets": "catalog:",
+        "@open-pioneer/coordinate-viewer": "catalog:",
+        "@open-pioneer/geolocation": "catalog:",
+        "@open-pioneer/map": "catalog:",
+        "@open-pioneer/map-navigation": "catalog:",
+        "@open-pioneer/map-ui-components": "catalog:",
+        "@open-pioneer/notifier": "catalog:",
+        "@open-pioneer/react-utils": "catalog:",
+        "@open-pioneer/runtime": "catalog:",
+        "@open-pioneer/scale-bar": "catalog:",
+        "@open-pioneer/scale-viewer": "catalog:",
+        "fflate": "^0.8.3",
+        "ol": "catalog:",
+        "ol-mapbox-style": "^13.3.0",
+        "react": "catalog:",
+        "react-dom": "catalog:",
+        "react-icons": "catalog:"
+    },
+    "devDependencies": {
+        "@open-pioneer/test-utils": "catalog:",
+        "@testing-library/react": "catalog:"
+    }
+}
