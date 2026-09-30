@@ -7,8 +7,6 @@ import react from "@vitejs/plugin-react";
 import { defineConfig, UserConfig } from "vite";
 import { dependencySourcemaps } from "./support/vite/dependency-sourcemaps.ts";
 
-const sampleSites = ["samples/map-sample", "samples/i18n-howto"];
-
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
     const devMode = mode === "development";
@@ -55,12 +53,7 @@ export default defineConfig(({ mode }) => {
                 rootSite: true,
 
                 // Additional directories to include as html (must contain index.html files)
-                sites: [
-                    "sites/empty",
-
-                    // Include sample sites in the build
-                    ...sampleSites
-                ],
+                sites: [],
 
                 // Apps to distribute as .js files for embedded use cases
                 apps: []

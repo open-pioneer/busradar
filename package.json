@@ -46,6 +46,7 @@
         "oxfmt": "catalog:",
         "oxlint": "catalog:",
         "react": "catalog:",
+        "resize-observer-polyfill": "catalog:",
         "rimraf": "catalog:",
         "sass": "catalog:",
         "tsx": "catalog:",
