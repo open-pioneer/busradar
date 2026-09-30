@@ -1,0 +1,93 @@
+name: Build and deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          # Automatically uses version declared in package.json (`packageManager: pnpm@...`)
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint code
+        run: pnpm lint
+
+      - name: Run tests
+        run: pnpm vitest run
+
+      - name: Check types
+        run: pnpm check-types
+
+      - name: Build app
+        run: pnpm build
+
+      - name: Build API documentation
+        run: pnpm build-docs
+
+      - name: Create license report
+        run: pnpm build-license-report;
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: build
+          path: dist/
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test-and-build
+    if: github.ref == 'refs/heads/main' && github.repository == 'open-pioneer/trails-starter'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          # https://github.com/JamesIves/github-pages-deploy-action/issues/1928#issuecomment-3635092712
+          persist-credentials: false
+
+      - name: Load artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: build
+          path: dist/
+
+      - name: Assemble site
+        run: |
+          set -eux;
+
+          mkdir -p site;
+          touch site/.nojekyll;
+          mv dist/www/* site/;
+          mv dist/docs site/docs;
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          repository-name: open-pioneer/trails-demo
+          folder: site
+          target-folder: starter
+          git-config-name: "Open Pioneer Automation"
+          git-config-email: "contact@openpioneer.dev"
+          token: ${{ secrets.DEMO_DEPLOY_TOKEN }}

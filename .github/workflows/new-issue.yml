@@ -1,0 +1,18 @@
+# Moves new issues to the maintenance board so they that are not missed by the team.
+name: Add new issues to maintenance board
+
+on:
+  issues:
+    types:
+      - opened
+      - reopened
+      - transferred
+
+permissions:
+  contents: read
+
+jobs:
+  add-to-board:
+    uses: open-pioneer/trails-repo-automation/.github/workflows/shared-new-issue.yml@main
+    secrets:
+      ISSUE_AUTOMATION_TOKEN: ${{ secrets.ISSUE_AUTOMATION_TOKEN }}
