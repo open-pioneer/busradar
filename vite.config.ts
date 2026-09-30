@@ -50,14 +50,14 @@ export default defineConfig(({ mode }) => {
         plugins: [
             pioneer({
                 // Whether to include src/index.html in the built output
-                rootSite: true,
+                rootSite: devMode,
 
                 // Additional directories to include as html (must contain index.html files)
                 sites: [],
 
                 // Apps to distribute as .js files for embedded use cases
                 apps: {
-                    "busradar": "samples/busradar-demo/busradar-app/app.ts"
+                    "busradar": "apps/busradar-app/app.ts"
                 }
             }),
             react()
