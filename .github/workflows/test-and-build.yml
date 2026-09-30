@@ -44,9 +44,6 @@ jobs:
       - name: Build app
         run: pnpm build
 
-      - name: Build API documentation
-        run: pnpm build-docs
-
       - name: Create license report
         run: pnpm build-license-report;
 
