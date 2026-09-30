@@ -1,34 +1,19 @@
-# Open Pioneer Trails Starter
+# Busradar
 
-[![Build and deploy](https://github.com/open-pioneer/trails-starter/actions/workflows/test-and-build.yml/badge.svg)](https://github.com/open-pioneer/trails-starter/actions/workflows/test-and-build.yml) [![Audit dependencies (daily)](https://github.com/open-pioneer/trails-starter/actions/workflows/audit-dependencies.yml/badge.svg)](https://github.com/open-pioneer/trails-starter/actions/workflows/audit-dependencies.yml)
+Live bus tracking application based on Open Pioneer Trails.
 
-[Samples](https://open-pioneer.github.io/trails-demo/starter/) | [API Documentation (for this Demo)](https://open-pioneer.github.io/trails-demo/starter/docs/) | [User manual](https://github.com/open-pioneer/trails-starter/tree/main/docs)
+This repository contains the source code for one of the demos on <https://open-pioneer.dev>.
 
-See [See also](#see-also) for API docs of other trails packages.
+> NOTE: The bus tracking app was developed solely using AI agents as a proof of concept.
 
 ## Quick start
 
-Ensure that you have [Node](https://nodejs.org/en/) (Version 24 or later) and [pnpm](https://pnpm.io/) (Version 10 or later) installed.
-
-Then execute the following commands to get started:
-
 ```bash
-$ git clone https://github.com/open-pioneer/trails-starter.git # Clone the repository
-$ cd trails-starter
-$ pnpm install                                                 # Install dependencies
-$ pnpm run dev                                                 # Launch development server
+$ pnpm install  # Install dependencies
+$ pnpm dev      # Launch development server
 ```
 
-Vite will print the project's local address (usually <http://localhost:5173/>).
-Point your browser at it and start programming!
-
-Additional in-depth information can be found in the [Documentation](./docs/README.md).
-
-## See also
-
-- [Core packages](https://github.com/open-pioneer/trails-core-packages): Contains the runtime package and other central packages.
-- [OpenLayers base packages](https://github.com/open-pioneer/trails-openlayers-base-packages): Contains packages using OpenLayers to render a map.
-- [Build tools](https://github.com/open-pioneer/trails-build-tools): Contains our build tooling such as the Vite plugin.
+Based on the [Trails starter](https://github.com/open-pioneer/trails-starter) (as of 2026-09-17).
 
 ## License
 
