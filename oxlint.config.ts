@@ -41,12 +41,8 @@ export default defineConfig({
         ],
         "no-var": "error",
         "import/no-duplicates": "error",
-        "max-params": [
-            "warn",
-            {
-                max: 4
-            }
-        ],
+        "no-await-in-loop": "off",
+        "max-params": "off",
         "prefer-const": "error",
         "prefer-rest-params": "error",
         "prefer-spread": "error",
