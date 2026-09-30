@@ -12,7 +12,9 @@ permissions:
 
 jobs:
   test-and-build:
+    name: Test and build
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -54,37 +56,33 @@ jobs:
           path: dist/
 
   deploy:
+    name: "Deploy to GitHub Pages"
     runs-on: ubuntu-latest
     needs: test-and-build
-    if: github.ref == 'refs/heads/main' && github.repository == 'open-pioneer/trails-starter'
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    timeout-minutes: 10
+    # Deployments never run in parallel; a queued deployment waits for the running one.
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-        with:
-          # https://github.com/JamesIves/github-pages-deploy-action/issues/1928#issuecomment-3635092712
-          persist-credentials: false
-
       - name: Load artifact
         uses: actions/download-artifact@v8
         with:
           name: build
           path: dist/
 
-      - name: Assemble site
-        run: |
-          set -eux;
-
-          mkdir -p site;
-          touch site/.nojekyll;
-          mv dist/www/* site/;
-          mv dist/docs site/docs;
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: dist/www/
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          repository-name: open-pioneer/trails-demo
-          folder: site
-          target-folder: starter
-          git-config-name: "Open Pioneer Automation"
-          git-config-email: "contact@openpioneer.dev"
-          token: ${{ secrets.DEMO_DEPLOY_TOKEN }}
+        id: deployment
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0

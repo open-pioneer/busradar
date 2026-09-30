@@ -1,5 +1,5 @@
 {
-    "name": "basis-opt-app",
+    "name": "busradar-app",
     "private": true,
     "dependencies": {
         "@chakra-ui/react": "catalog:",
